@@ -1,0 +1,626 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'themes';
+
+/****************************
+
+    Fonts
+
+****************************/
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 800;
+    font-style: normal;
+    src: url('../assets/fonts/OpenSans-Regular/OpenSans-Regular.eot');
+    src: url('../assets/fonts/OpenSans-Regular/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/OpenSans-Regular/OpenSans-Regular.woff2') format('woff2'),
+    url('../assets/fonts/OpenSans-Regular/OpenSans-Regular.woff') format('woff'),
+    url('../assets/fonts/OpenSans-Regular/OpenSans-Regular.ttf') format('truetype'),
+    url('../assets/fonts/OpenSans-Regular/OpenSans-Regular.svg#OpenSansOpenSans-Regular') format('svg');
+}
+
+@font-face {
+    font-family: paintcans;
+    src: url('../assets/fonts/paintcans/PaintCans_09_FREE.otf') format("opentype");
+}
+
+
+/****************************
+
+    Reset & co
+
+****************************/
+*:not(.mat-dialog-container) {
+    font-family: 'Open sans';
+    box-sizing: border-box;
+    outline: none;
+    &:not(input) { user-select: none; }
+    @include themify($themes) {
+        color: themed('primaryFont') !important;
+    }
+}
+
+html,
+body {
+    cursor: default;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+input,
+select,
+textarea {
+    border: 0;
+    margin: 0;
+}
+
+button,
+input[type='button'],
+input[type='submit'] {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    &:focus { outline: none;}
+}
+
+
+/****************************
+
+    Custom global
+
+****************************/
+
+// Custom Scroll bar
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-thumb {
+    @include themify($themes) {
+        background: themed('scrollBtn');
+    }
+}
+::-webkit-scrollbar-track {
+    @include themify($themes) {
+        background: themed('scrollTrack');
+    }
+}
+::-webkit-scrollbar-button {
+    height: 15px;
+    border-radius: 0;
+    @include themify($themes) {
+        background: themed('scrollBtn');
+    }
+}
+
+// Tab content
+.contentPanel {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .scrollContainer {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+}
+
+/*
+// Video list
+.appList {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    .appListItem {
+        .itemBg {
+            width: 100%;
+            // height: 100px;
+            display: flex;
+            flex-direction: row;
+            cursor: default !important;
+            @include themify($themes) {
+                color: themed('primaryFont') !important;
+                background-color: themed('secondary') !important;
+            }
+        }
+    }
+    .appListItem:not(:last-child) {
+        margin-bottom: 16px;
+    }
+    .loadLine {
+        // margin-bottom: 16px;
+        @include themify($themes) {
+            background-color: themed('primary') !important;
+        }
+    }
+}
+*/
+
+.plList {
+    .plListItem {
+        @include themify($themes) {
+            background-color: themed('primary') !important;
+        }
+    }
+}
+
+.duration {
+    padding-left: 2.5px;
+    padding-right: 2.5px;
+    @include themify($themes) {
+        border: 1px solid themed('primaryFont');
+        // background-color: themed('darkestBg') !important;
+    }
+}
+.noOverflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Flex box spacer
+.flexSpacer { flex: 1 1 auto; }
+
+
+// Custom button
+.btnHover:hover {
+    @include themify($themes) {
+        background-color: themed('btnHover');
+    }
+}
+
+.btnHovered {
+    @include themify($themes) {
+        background-color: themed('btnHover');
+    }
+}
+
+.activ {
+    @include themify($themes) {
+        background-color: themed('btnActiv');
+    }
+}
+.returnBtn {
+    fa i {
+        height: 44px !important;
+        margin-top: -7px!important;
+    }
+}
+
+.disabled {
+    cursor: default;
+    @include themify($themes) {
+        color: themed('primaryFontDisabled') !important;
+    }
+    fa i {
+        @include themify($themes) {
+            color: themed('primaryFontDisabled') !important;
+        }
+    }
+    &:hover {
+        background-color: transparent !important;
+    }
+}
+
+.toolbarBtn {
+    width: 44px;
+    height: 44px;
+    margin-right: 5px;
+
+    &.plListItemBtn {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    &.activeUnderLine {
+        text-decoration: underline;
+    }
+
+    &.toggleBtn {
+        margin-left: 5px;
+        margin-right: 0;
+    }
+
+    &.playerBtn {
+        cursor: pointer;
+        .fa {
+            @include themify($themes) {
+                color: themed('primaryFontDisabled') !important;
+            }
+        }
+        &.enabledBtn .fa {
+            @include themify($themes) {
+                color: themed('primaryFont') !important;
+            }
+        }
+    }
+
+    &.textBtn {
+        height: 44px;
+        padding: 2px;
+        font-size: 1rem;
+        width: auto;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-right: 0;
+    }
+    &.iconMenuBtn {
+        margin-right: 0;
+    }
+    &.menuBtn {
+        width: 40px;
+        height: 40px;
+    }
+
+    &.menuBtnPlayerPanel {
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        padding: 0;
+    }
+    &.miniBtn {
+        width: 34px;
+        height: 34px;
+    }
+    &.playerBtn {
+        width: 30px;
+        height: 30px;
+        margin-right: 0;
+    }
+    img {
+        box-sizing: content-box;
+        border-radius: 500px;
+        width: 35px;
+        height: 35px;
+        align-self: center;
+    }
+    &.resize {
+        .mat-icon {
+            margin-top: 3px;
+            height: auto;
+            width: auto;
+        }
+        .material-icons {
+            font-size: 36px;
+        }
+    }
+}
+
+
+.playerBar {
+/*
+    .pointer fa i { cursor: pointer; }
+    fa i {
+        cursor: default;
+        @include themify($themes) {
+            color: themed('primaryFontDisabled') !important;
+        }
+    }
+
+    .enabled fa i {
+        cursor: pointer;
+        @include themify($themes) {
+            color: themed('primaryFont') !important;
+        }
+    }
+
+    .btnHoverPlayer:hover fa i {
+        color: black !important;
+        @include themify($themes) {
+            color: themed('primaryFontLight') !important;
+        }
+    }
+    */
+}
+
+.inlineBtn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.theme-dark .plName:hover  { color: white !important; font-weight: bold; }
+.theme-light .plName:hover { color: black !important; font-weight: bold; }
+
+
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/****************************
+
+    Drag and Drop
+
+****************************/
+
+.dnd-drag-item {
+    position: absolute;
+    z-index: 9999;
+    background-color: red;
+    height: 40px;
+    width: 40px;
+    top: 0;
+    left: -1900px;
+    &.playlist {
+
+    }
+    &.playlistItem {
+        
+    }
+
+    .counter {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+
+
+.dnd-drag-over {
+    border: 2px dashed  rgb(75, 87, 243);
+    &.dropBtn {
+        border: none;
+    }
+    .contentContainer {
+        border: 2px dashed  rgb(75, 87, 243);
+    }
+}
+
+.dnd-drag-start {
+    opacity:0.7;
+    border: 2px dashed #000;
+}
+
+.dnd-drag-enter {
+    // opacity:0.7;
+    // border: 2px dashed #000;
+}
+
+
+
+.onSortableDragClass,
+.dnd-sortable-drag {
+
+    /*
+  -moz-transform:scale(0.9);
+  -webkit-transform:scale(0.9);
+  transform:scale(0.9);
+  */
+  opacity: 0.7;
+  border: 2px dashed #000;
+}
+
+
+
+
+
+// Hide shadow aid item on over drop container
+.hideShadow {
+    &.gu-transit {
+        display: none !important;
+    }
+}
+
+
+// Over effect on over drop container
+.btnHoveredDrop {
+
+    &.dnd-drag-over {
+        border: 2px solid transparent;
+    }
+    border: 2px dashed black;
+    @include themify($themes) {
+        background-color: themed('btnHover');
+    }
+    .appListItem {
+        display: none !important;
+    }
+}
+
+// Dragged video list item
+.appListItem {
+
+    @include themify($themes) {
+        background-color: themed('secondary') !important;
+    }
+
+    &.gu-mirror {
+        border: 2px dashed black;
+        display: flex;
+        flex-direction: row;
+        background-color: white;
+
+
+        .itemBox { height: 100%; }
+
+        .handle {
+            cursor: move !important;
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+            &i .handle {
+            }
+        }
+
+        .controlBox {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            min-width: 100px;
+        }
+
+        .itemText {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            user-select: text;
+            cursor: text;
+        }
+
+        .srThumb {
+            height: 100%;
+            margin-right: 20px;
+            position: relative;
+
+            .hoverThumbPlayBtn,
+            .hoverThumbPlayBtnIco {
+                display: none;
+            }
+
+            img {
+                // min-width: 133.33px;
+                width: auto;
+                height: 100px;
+            }
+        }
+        .srInfos {
+            display: flex;
+            flex-direction: column;
+
+            .srTitle {
+                margin: 0 0 5px;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            .srDesc {
+                margin: 0 0 5px;
+                font-size: 0.8rem;
+                font-weight: normal;
+            }
+            .duration {
+                font-size: 0.7rem;
+                padding: 2px;
+                align-self: self-start;
+            }
+        }
+
+        /*
+        .handle {
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+            &i .handle {
+            }
+        }
+        */
+
+        /*
+        .srThumb img {
+            width: auto !important;
+            min-width: auto !important;
+            max-width: auto !important;
+            height: 100%;
+        }
+        .srTitle {
+            font-size: 0.8rem !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+        }
+        .srDesc, .duration, .srBtn {
+            display: none;
+        }
+        */
+    }
+}
+
+.customMenu {
+    box-shadow: 0px 0px 18px -4px rgba(0,0,0,0.75);
+
+    &.theme-dark {
+        background-color: getValue('dark', 'primary') !important;
+        color: getValue('dark', 'primaryFont') !important;
+    }
+    &.theme-light {
+        background-color: getValue('light', 'primary') !important;
+        color: getValue('light', 'primaryFont') !important;
+    }
+}
+
+/****************************
+
+    Unglorious hack...
+
+****************************/
+
+.mat-menu-content {
+    display: flex;
+    flex-direction: column;
+
+    .menuItem {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding: 5px 10px 5px 0;
+
+        .menuItemIco {
+            margin-left: 10px;
+            margin-right: 10px;
+            min-width: 40px;
+            align-self: center;
+        }
+        .menuItemLabel {
+            font-size: 1.2rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            align-self: center;
+        }
+    }
+}
+
+.mat-select-value {
+    overflow: visible;
+}
+
+
+.plIcon {
+    width: 2rem;
+    height: auto;
+
+}
+
+.menuBtn {
+    .menuBtnIco {
+        .fa {
+            color: getValue('dark', 'primaryFont') !important;
+        }
+    }
+}
+
+
+.ng-tooltip {
+    max-width: 200px;
+    background-color: black;
+    border: 1px solid white;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    padding: 2px 5px 2px 5px;
+    position: absolute;
+    z-index: 1000;
+    display: block;
+    opacity: 0;
+    top: 100%;
+    left: 50%;
+    -webkit-transition: opacity 300ms;
+       -moz-transition: opacity 300ms;
+         -o-transition: opacity 300ms;
+            transition: opacity 300ms;
+}
+.ng-tooltip-show {
+    opacity: 1;
+}
